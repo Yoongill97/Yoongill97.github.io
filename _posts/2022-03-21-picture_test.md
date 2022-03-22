@@ -2,6 +2,6 @@
 layout: single
 title: github blog pictute test
 ---
-![Á¦¸ñ](/assets/images/·ÎÇÏ~.jpg)
+![ì œëª©](/assets/images/ë¡œí•˜~.jpg)
 
-ÀÌ·¯¸é µÈ°Ç°¡?????
+ì´ëŸ¬ë©´ ëœê±´ê°€?????
