@@ -42,7 +42,7 @@ u에서 v로의 residual capacity c_f(u,v)는 c(u,v) - f(u,v) 로 정의된다.
 
 ![1](/assets/images/ford1.png)
 
-깊이우선탐색(DFS)를 사용하여 s에서 t로 가는 경로를 찾는다.
+너비우선탐색(BFS)를 사용하여 s에서 t로 가는 경로를 찾는다.
 {s,a,b,t} 경로에서 흐를 수 있는 최대 유량은 1 이다. (c_f(a,b) = 1)
 
 ![2](/assets/images/ford2.png)
@@ -51,3 +51,30 @@ u에서 v로의 residual capacity c_f(u,v)는 c(u,v) - f(u,v) 로 정의된다.
 이후, 다시 전단계로 돌아가 반복한다.
 
 ![3](https://i.imgur.com/jrrzK79.png)
+![4](https://i.imgur.com/rGIvRjB.png)
+![5](https://i.imgur.com/jrrzK79.png)
+
+단계를 반복하다가 s에서 t로 가는 경로가 존재하지 않을 경우,
+
+![6](https://i.imgur.com/8oGwcq3.png)
+
+포드-풀커슨 알고리즘 수행을 종료한다.
+s에서 t로 향하는 최대 유량은 {a,t}에서 2, {b,t}에서 3으로 5가 된다.
+
+*****
+
+## 구현
+
+![초기설정](/assets/images/%EC%B4%88%EA%B8%B0%EC%84%A4%EC%A0%95.png)
+
+### 변수의 의미
+MAX : 노드의 최대 갯수
+INF : 무한대를 표현
+adj[] : 노드 간의 연결을 표현
+c[a][b] : a노드와 b노드 사이의 용량
+f[a][b] : a노드에서 b노드로 흐르는 유량
+
+![makeGraph](/assets/images/makeGraph.png)
+
+노드 간의 관계, 즉 그래프를 만드는 함수이다.
+예를 들어 makeGraph(1,2,8) 은 노드1과 노드2가 연결되어 있으며, 둘 사이의 용량(capacity)은 8로 설정하겠다는 의미이다.
