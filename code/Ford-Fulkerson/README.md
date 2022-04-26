@@ -50,4 +50,4 @@ u에서 v로의 residual capacity c_f(u,v)는 c(u,v) - f(u,v) 로 정의된다.
 직전 단계에서 구한 경로의 반대 방향으로 최대 유량을 흘려보내는 엣지를 만든다.
 이후, 다시 전단계로 돌아가 반복한다.
 
-![3]("https://i.imgur.com/jrrzK79.png")
+![3](https://i.imgur.com/jrrzK79.png)
