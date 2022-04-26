@@ -31,14 +31,11 @@ int FordFulkerson(int start, int end) {
 				if (c[current][next] - f[current][next] > 0 && dist[next] == -1) {
 					dist[next] = current;
 					q.push(next);
-					if (next == end)
-						break;
+					if (next == end) break;
 				}
 			}
 		}
-
-		if (dist[end] == -1)
-			break;
+        if (dist[end] == -1) break;
 
 		int flow = INF;
 		for (int i = end; i != start; i = dist[i])

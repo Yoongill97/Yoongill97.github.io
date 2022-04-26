@@ -50,7 +50,7 @@ u에서 v로의 residual capacity c_f(u,v)는 c(u,v) - f(u,v) 로 정의된다.
 직전 단계에서 구한 경로의 반대 방향으로 최대 유량을 흘려보내는 엣지를 만든다.
 이후, 다시 전단계로 돌아가 반복한다.
 
-![3](https://i.imgur.com/jrrzK79.png)
+![3](https://i.imgur.com/CNk0XLJ.png)
 ![4](https://i.imgur.com/rGIvRjB.png)
 ![5](https://i.imgur.com/jrrzK79.png)
 
@@ -78,3 +78,15 @@ f[a][b] : a노드에서 b노드로 흐르는 유량
 
 노드 간의 관계, 즉 그래프를 만드는 함수이다.
 예를 들어 makeGraph(1,2,8) 은 노드1과 노드2가 연결되어 있으며, 둘 사이의 용량(capacity)은 8로 설정하겠다는 의미이다.
+
+![Ford-Fulkerson~BFS](/assets/images/BFS.png)
+
+Ford-Fulkerson Algorithm의 첫 발자국이다.
+의사코드에 나와있듯이 BFS탐색으로 start에서 end까지 가는 모든 경로를 찾는다.
+
+![Ford-Fulkerson~main](/assets/images/main.png)
+
+Ford-Fulkerson Algorithm의 메인 아이디어이다.
+첫번째 for문에서는 BFS로 탐색한 경로에서 거꾸로 거슬러 올라가며 최소 유량을 찾아낸다.
+두번째 for문에서는 얻은 최소유량을 탐색한 경로의 반대방향으로 흘려준다.
+BFS로부터 얻은 모든 결로마다의 유량을 합친 값이 result, 즉 시작노드에서 끝노드까지 흐를 수 있는 최대유량이다.
