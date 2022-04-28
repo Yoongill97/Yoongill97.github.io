@@ -100,8 +100,7 @@ BFS로부터 얻은 모든 결로마다의 유량을 합친 값이 result, 즉 시작노드에서 끝노드까
 
 ## Ford-Fulkerson의 문제점?
 
-![worst1](https://gseok.gitbooks.io/algorithm/content/assets/network-flow-ford-fulkerson1.png)
+![worst](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FlAtcR%2FbtqHuizxiHN%2Fxo3QfYnTtYPUFjDHfuxi30%2Fimg.png)
 
-위와 같은 그래프를 이 알고리즘으로 돌린다고 생각해보자.
+Ford-Fulkerson 알고리즘에서 경로를 찾을 때, 최악의 경우는 위의 사진과 같이 작업의 수행시간이 길어지게 된다.
 
-![worst2](https://gseok.gitbooks.io/algorithm/content/assets/network-flow-ford-fulkerson2.png)
