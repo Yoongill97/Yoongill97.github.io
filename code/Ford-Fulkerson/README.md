@@ -58,7 +58,7 @@ u에서 v로의 residual capacity c_f(u,v)는 c(u,v) - f(u,v) 로 정의된다.
 
 ![6](https://i.imgur.com/8oGwcq3.png)
 
-포드-풀커슨 알고리즘 수행을 종료한다.
+포드-풀커슨 알고리즘 수행을 종료한다.  
 s에서 t로 향하는 최대 유량은 {a,t}에서 2, {b,t}에서 3으로 5가 된다.
 
 *****
@@ -67,26 +67,41 @@ s에서 t로 향하는 최대 유량은 {a,t}에서 2, {b,t}에서 3으로 5가 된다.
 
 ![초기설정](/assets/images/%EC%B4%88%EA%B8%B0%EC%84%A4%EC%A0%95.png)
 
-### 변수의 의미
-MAX : 노드의 최대 갯수
-INF : 무한대를 표현
-adj[] : 노드 간의 연결을 표현
-c[a][b] : a노드와 b노드 사이의 용량
+MAX : 노드의 최대 갯수  
+INF : 무한대를 표현  
+adj[] : 노드 간의 연결을 표현  
+c[a][b] : a노드와 b노드 사이의 용량  
 f[a][b] : a노드에서 b노드로 흐르는 유량
 
 ![makeGraph](/assets/images/makeGraph.png)
 
-노드 간의 관계, 즉 그래프를 만드는 함수이다.
+노드 간의 관계, 즉 그래프를 만드는 함수이다.  
 예를 들어 makeGraph(1,2,8) 은 노드1과 노드2가 연결되어 있으며, 둘 사이의 용량(capacity)은 8로 설정하겠다는 의미이다.
 
 ![Ford-Fulkerson~BFS](/assets/images/BFS.png)
 
-Ford-Fulkerson Algorithm의 첫 발자국이다.
+Ford-Fulkerson Algorithm의 첫 발자국이다.  
 의사코드에 나와있듯이 BFS탐색으로 start에서 end까지 가는 모든 경로를 찾는다.
 
-![Ford-Fulkerson~main](/assets/images/main.png)
+![Ford-Fulkerson~main](/assets/images/ford_main.png)
 
-Ford-Fulkerson Algorithm의 메인 아이디어이다.
+Ford-Fulkerson Algorithm의 메인 아이디어이다.  
 첫번째 for문에서는 BFS로 탐색한 경로에서 거꾸로 거슬러 올라가며 최소 유량을 찾아낸다.
 두번째 for문에서는 얻은 최소유량을 탐색한 경로의 반대방향으로 흘려준다.
 BFS로부터 얻은 모든 결로마다의 유량을 합친 값이 result, 즉 시작노드에서 끝노드까지 흐를 수 있는 최대유량이다.
+
+![main](/assets/images/main.png)
+
+결과값을 확인하기 위해, 위에서 예를 들었던 그래프를 입력하였다.
+
+![result](/assets/images/ford_result.png)
+
+정상적으로 작동하는 것을 볼 수 있다.
+
+## Ford-Fulkerson의 문제점?
+
+![worst1](https://gseok.gitbooks.io/algorithm/content/assets/network-flow-ford-fulkerson1.png)
+
+위와 같은 그래프를 이 알고리즘으로 돌린다고 생각해보자.
+
+![worst2](https://gseok.gitbooks.io/algorithm/content/assets/network-flow-ford-fulkerson2.png)

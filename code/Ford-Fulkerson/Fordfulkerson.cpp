@@ -17,7 +17,7 @@ int FordFulkerson(int start, int end) {
 	int result = 0;
 
 	while (true) {
-		std::vector<int> dist(MAX, -1);
+		std::vector<int> dist(MAX, -1);     //방문한 노드인지 확인
 		std::queue<int> q;
 		q.push(start);
 
@@ -29,19 +29,23 @@ int FordFulkerson(int start, int end) {
 				int next = adj[current][i];
 
 				if (c[current][next] - f[current][next] > 0 && dist[next] == -1) {
-					dist[next] = current;
+                    //방문하지않은 노드가 용량이 남았을 때
+					dist[next] = current;   //경로를 기억한다.
 					q.push(next);
-					if (next == end) break;
+					if (next == end) break; //도착
 				}
 			}
 		}
-        if (dist[end] == -1) break;
+        if (dist[end] == -1) break;     //모든 경로를 찾았다면 break
 
-		int flow = INF;
+		int flow = INF; 
 		for (int i = end; i != start; i = dist[i])
+            //거꾸로 거슬러올라가며 최소 유량을 탐색한다.
 			flow = std::min(flow, c[dist[i]][i] - f[dist[i]][i]);
+            //flow값 갱신
 
 		for (int i = end; i != start; i = dist[i]) {
+            //최소 유량만큼 추가
 			f[dist[i]][i] += flow;
 			f[i][dist[i]] -= flow;
 		}
