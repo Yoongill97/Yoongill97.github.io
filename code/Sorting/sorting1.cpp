@@ -2,6 +2,10 @@
 #include <time.h>
 #include <stdlib.h>
 #include <math.h>
+#include <vector>
+#include <iostream>
+
+using namespace std;
 
 void BubbleSort(int* arr,int cnt){
     int temp;
@@ -152,6 +156,44 @@ void QuickSort(int* arr, int start, int end){
 	QuickSort(arr, start, j-1);
 	QuickSort(arr, j+1, end);
 }
+int partition(vector<int>& arr, int l, int r) {
+	int pivot = arr[r];
+	int i = l - 1;
+
+	for (int j = l; j < r; j++) {
+		if (pivot > arr[j]) {
+			i++;
+			swap(arr[i], arr[j]);
+		}
+	}
+
+	swap(&arr[i + 1], &arr[r]);
+	return (i + 1);
+}
+
+void QuickSort2(vector<int>& arr, int l, int r) {
+	int st[1000];
+	int top = -1;
+	st[++top] = l;
+	st[++top] = r;
+
+	while (top >= 0) {		
+		int tr = st[top--];
+		int tl = st[top--];
+		
+		int p = partition(arr, tl, tr);
+		if (p - 1 > tl) {
+			st[++top] = tl;
+			st[++top] = p - 1;
+		}
+
+		if (p + 1 < tr) {
+			st[++top] = p + 1;
+			st[++top] = tr;
+		}
+	}
+}
+
 void Copy(int* arr1, int* arr2, int cnt){
     for(int i=0; i<cnt; i++) arr1[i] = arr2[i];
 }
@@ -159,9 +201,8 @@ void Copy(int* arr1, int* arr2, int cnt){
 int main(){
     clock_t start_bubble, start_selection, start_insertion, start_shell, start_heap, start_quick,
             end_bubble, end_selection, end_insertion, end_shell, end_heap, end_quick;   //시간측정하기
-    srand(time(0));
 
-    int LENGTH_OF_ARRAY;
+    int LENGTH_OF_ARRAY, num=0;
 
     for(int i=5; i<=20; i++){
         LENGTH_OF_ARRAY = int(pow(2,i));
@@ -170,8 +211,10 @@ int main(){
 
     int *random=(int*)malloc(sizeof(int)*LENGTH_OF_ARRAY);
     int *arr=(int*)malloc(sizeof(int)*LENGTH_OF_ARRAY);
-    for(int i=0; i<LENGTH_OF_ARRAY; i++){
-        random[i] = i;
+    vector<int> a(LENGTH_OF_ARRAY);
+    for(int j=0; j<LENGTH_OF_ARRAY; j++){
+        random[j] = j;
+        a[i] = j;
     }
 
     //printf("정렬전\n");
@@ -216,12 +259,14 @@ int main(){
 
     Copy(arr, random, LENGTH_OF_ARRAY);
     start_quick = clock();
-    QuickSort(arr,0,LENGTH_OF_ARRAY-1);
+    QuickSort2(a,0,LENGTH_OF_ARRAY-1);
     end_quick = clock();
     printf("<Quick> 실행시간 : %f\n",(float)(end_quick-start_quick)/CLOCKS_PER_SEC);
     //for(int i=0; i<LENGTH_OF_ARRAY; i++)printf("%d\n", arr[i]);
 
     printf("\n");
+    free(random);
+    free(arr);
     }
 
     for(int i=5; i<=20; i++){
@@ -231,10 +276,12 @@ int main(){
 
     int *random=(int*)malloc(sizeof(int)*LENGTH_OF_ARRAY);
     int *arr=(int*)malloc(sizeof(int)*LENGTH_OF_ARRAY);
-    int num = LENGTH_OF_ARRAY;
-    for(int i=0; i<LENGTH_OF_ARRAY; i++){
-        random[i] = num--;
+    vector<int> a(LENGTH_OF_ARRAY);
+    for(int j=0; j<LENGTH_OF_ARRAY; j++){
+        random[j] = LENGTH_OF_ARRAY-j;
+        a[i] = LENGTH_OF_ARRAY-j;
     }
+    
 
     //printf("정렬전\n");
     //for(int i=0; i<LENGTH_OF_ARRAY; i++)printf("%d\n", random[i]);
@@ -278,12 +325,14 @@ int main(){
 
     Copy(arr, random, LENGTH_OF_ARRAY);
     start_quick = clock();
-    QuickSort(arr,0,LENGTH_OF_ARRAY-1);
+    QuickSort2(a,0,LENGTH_OF_ARRAY-1);
     end_quick = clock();
     printf("<Quick> 실행시간 : %f\n",(float)(end_quick-start_quick)/CLOCKS_PER_SEC);
     //for(int i=0; i<LENGTH_OF_ARRAY; i++)printf("%d\n", arr[i]);
 
     printf("\n");
+    free(random);
+    free(arr);
     }
 
     return 0;

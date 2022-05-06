@@ -163,15 +163,15 @@ int main(){
 
     int LENGTH_OF_ARRAY;
 
-    for(int i=5; i<=20; i++){
+    for(int i=20; i<=20; i++){
         LENGTH_OF_ARRAY = int(pow(2,i));
 
         printf("입력 데이터 수 : %d\n\n", LENGTH_OF_ARRAY);
 
     int *random=(int*)malloc(sizeof(int)*LENGTH_OF_ARRAY);
     int *arr=(int*)malloc(sizeof(int)*LENGTH_OF_ARRAY);
-    for(int i=0; i<LENGTH_OF_ARRAY; i++){
-        random[i] = rand() % 1000;
+    for(int j=0; j<LENGTH_OF_ARRAY; j++){
+        random[j] = rand() % 1000;
     }
 
     //printf("정렬전\n");
@@ -222,6 +222,8 @@ int main(){
     //for(int i=0; i<LENGTH_OF_ARRAY; i++)printf("%d\n", arr[i]);
 
     printf("\n");
+    free(random);
+    free(arr);
     }
 
     return 0;
