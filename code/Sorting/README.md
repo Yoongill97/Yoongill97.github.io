@@ -85,7 +85,7 @@ Bubble, Selection, Shell, Heap 과 같은 정렬 알고리즘은 각각의 시간복잡도와 메모�
 ![Insertion](/assets/images/Insertion.png)
 
 
-Insertion Sort의 경우는, 사람과 가장 비슷하다고 생각할 수 있다. 정렬이 되어있는 데이터를 입력받을 수록, 그 실행시간은 빨라진다.
+Insertion Sort의 경우는 정렬이 되어있는 데이터를 입력받을 수록, 그 실행시간은 빨라진다.
 
 Quick Sort에서 최악의 경우는 pivot 설정에 문제가 있을 때인데, 이는 이미 정렬이 된 데이터, 역으로 정렬된 데이터, 모두 같은 값을 가진 데이터 등의 상황이다.
 
